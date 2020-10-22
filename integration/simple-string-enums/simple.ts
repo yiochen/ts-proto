@@ -5,8 +5,6 @@ export interface Simple {
   state: StateEnum;
 }
 
-export const protobufPackage = 'simple'
-
 export enum StateEnum {
   UNKNOWN = "UNKNOWN",
   ON = "ON",

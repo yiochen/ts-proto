@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/local/Cellar/bash/5.0.18/bin/bash
 shopt -s globstar
 
 # Runs the local code generator for the .bin test files (as created/kept

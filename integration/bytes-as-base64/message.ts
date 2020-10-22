@@ -6,9 +6,8 @@ export interface Message {
 const baseMessage: object = {
 };
 
-export const protobufPackage = ''
-
 export const Message = {
+  typeUrl: 'type.googleapis.com/Message',
   fromJSON(object: any): Message {
     const message = { ...baseMessage } as Message;
     if (object.data !== undefined && object.data !== null) {

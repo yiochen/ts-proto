@@ -108,7 +108,7 @@ export function generateFile(typeMap: TypeMap, fileDesc: FileDescriptorProto, pa
   let file = FileSpec.create(moduleName);
 
   // Indicate this file's source protobuf package for reflective use with google.protobuf.Any
-  file = file.addCode(CodeBlock.empty().add(`export const protobufPackage = '%L'\n`, fileDesc.package));
+  //   file = file.addCode(CodeBlock.empty().add(`export const protobufPackage = '%L'\n`, fileDesc.package));
 
   const sourceInfo = SourceInfo.fromDescriptor(fileDesc);
 
@@ -148,6 +148,9 @@ export function generateFile(typeMap: TypeMap, fileDesc: FileDescriptorProto, pa
       (fullName, message) => {
         file = file.addProperty(generateBaseInstance(typeMap, fullName, message, options));
         let staticMethods = CodeBlock.empty().add('export const %L = ', fullName).beginHash();
+
+        const fullNameWithPackage = fileDesc.package ? `${fileDesc.package}.${fullName}` : fullName;
+        staticMethods = staticMethods.addHashEntry('typeUrl', `'type.googleapis.com/${fullNameWithPackage}'`);
 
         staticMethods = !options.outputEncodeMethods
           ? staticMethods

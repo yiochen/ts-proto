@@ -118,5 +118,3 @@ export interface Any {
    */
   value: Uint8Array;
 }
-
-export const protobufPackage = 'google.protobuf'

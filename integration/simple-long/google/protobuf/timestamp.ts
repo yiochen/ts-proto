@@ -109,9 +109,8 @@ const baseTimestamp: object = {
   nanos: 0,
 };
 
-export const protobufPackage = 'google.protobuf'
-
 export const Timestamp = {
+  typeUrl: 'type.googleapis.com/google.protobuf.Timestamp',
   encode(message: Timestamp, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int64(message.seconds);
     writer.uint32(16).int32(message.nanos);

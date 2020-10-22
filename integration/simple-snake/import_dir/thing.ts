@@ -31,9 +31,8 @@ function fromTimestamp(t: Timestamp): Date {
   return new Date(millis);
 }
 
-export const protobufPackage = 'simple'
-
 export const ImportedThing = {
+  typeUrl: 'type.googleapis.com/simple.ImportedThing',
   encode(message: ImportedThing, writer: Writer = Writer.create()): Writer {
     if (message.created_at !== undefined && message.created_at !== undefined) {
       Timestamp.encode(toTimestamp(message.created_at), writer.uint32(10).fork()).ldelim();

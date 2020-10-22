@@ -6,5 +6,3 @@ export interface Registration {
   date: Date | undefined;
   perks: Any | undefined;
 }
-
-export const protobufPackage = 'event'

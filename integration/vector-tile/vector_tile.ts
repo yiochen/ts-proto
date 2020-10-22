@@ -66,8 +66,6 @@ function longToNumber(long: Long) {
   return long.toNumber();
 }
 
-export const protobufPackage = 'vector_tile'
-
 export enum Tile_GeomType {
   UNKNOWN = 0,
   POINT = 1,
@@ -113,6 +111,7 @@ export function tile_GeomTypeToJSON(object: Tile_GeomType): string {
 }
 
 export const Tile = {
+  typeUrl: 'type.googleapis.com/vector_tile.Tile',
   encode(message: Tile, writer: Writer = Writer.create()): Writer {
     for (const v of message.layers) {
       Tile_Layer.encode(v!, writer.uint32(26).fork()).ldelim();
@@ -169,6 +168,7 @@ export const Tile = {
 };
 
 export const Tile_Value = {
+  typeUrl: 'type.googleapis.com/vector_tile.Tile_Value',
   encode(message: Tile_Value, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.stringValue);
     writer.uint32(21).float(message.floatValue);
@@ -306,6 +306,7 @@ export const Tile_Value = {
 };
 
 export const Tile_Feature = {
+  typeUrl: 'type.googleapis.com/vector_tile.Tile_Feature',
   encode(message: Tile_Feature, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).uint64(message.id);
     writer.uint32(18).fork();
@@ -434,6 +435,7 @@ export const Tile_Feature = {
 };
 
 export const Tile_Layer = {
+  typeUrl: 'type.googleapis.com/vector_tile.Tile_Layer',
   encode(message: Tile_Layer, writer: Writer = Writer.create()): Writer {
     writer.uint32(120).uint32(message.version);
     writer.uint32(10).string(message.name);

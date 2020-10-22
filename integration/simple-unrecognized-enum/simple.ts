@@ -268,8 +268,6 @@ function longToNumber(long: Long) {
   return long.toNumber();
 }
 
-export const protobufPackage = 'simple'
-
 export enum StateEnum {
   UNKNOWN = 0,
   ON = 2,
@@ -376,6 +374,7 @@ export function nested_InnerEnumToJSON(object: Nested_InnerEnum): string {
 }
 
 export const Simple = {
+  typeUrl: 'type.googleapis.com/simple.Simple',
   encode(message: Simple, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.name);
     writer.uint32(16).int32(message.age);
@@ -618,6 +617,7 @@ export const Simple = {
 };
 
 export const Child = {
+  typeUrl: 'type.googleapis.com/simple.Child',
   encode(message: Child, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.name);
     writer.uint32(16).int32(message.type);
@@ -680,6 +680,7 @@ export const Child = {
 };
 
 export const Nested = {
+  typeUrl: 'type.googleapis.com/simple.Nested',
   encode(message: Nested, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.name);
     if (message.message !== undefined && message.message !== undefined) {
@@ -759,6 +760,7 @@ export const Nested = {
 };
 
 export const Nested_InnerMessage = {
+  typeUrl: 'type.googleapis.com/simple.Nested_InnerMessage',
   encode(message: Nested_InnerMessage, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.name);
     if (message.deep !== undefined && message.deep !== undefined) {
@@ -823,6 +825,7 @@ export const Nested_InnerMessage = {
 };
 
 export const Nested_InnerMessage_DeepMessage = {
+  typeUrl: 'type.googleapis.com/simple.Nested_InnerMessage_DeepMessage',
   encode(message: Nested_InnerMessage_DeepMessage, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.name);
     return writer;
@@ -870,6 +873,7 @@ export const Nested_InnerMessage_DeepMessage = {
 };
 
 export const OneOfMessage = {
+  typeUrl: 'type.googleapis.com/simple.OneOfMessage',
   encode(message: OneOfMessage, writer: Writer = Writer.create()): Writer {
     if (message.first !== undefined) {
       writer.uint32(10).string(message.first);
@@ -936,6 +940,7 @@ export const OneOfMessage = {
 };
 
 export const SimpleWithWrappers = {
+  typeUrl: 'type.googleapis.com/simple.SimpleWithWrappers',
   encode(message: SimpleWithWrappers, writer: Writer = Writer.create()): Writer {
     if (message.name !== undefined && message.name !== undefined) {
       StringValue.encode({ value: message.name! }, writer.uint32(10).fork()).ldelim();
@@ -1067,6 +1072,7 @@ export const SimpleWithWrappers = {
 };
 
 export const Entity = {
+  typeUrl: 'type.googleapis.com/simple.Entity',
   encode(message: Entity, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int32(message.id);
     return writer;
@@ -1114,6 +1120,7 @@ export const Entity = {
 };
 
 export const SimpleWithMap = {
+  typeUrl: 'type.googleapis.com/simple.SimpleWithMap',
   encode(message: SimpleWithMap, writer: Writer = Writer.create()): Writer {
     Object.entries(message.entitiesById).forEach(([key, value]) => {
       SimpleWithMap_EntitiesByIdEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
@@ -1236,6 +1243,7 @@ export const SimpleWithMap = {
 };
 
 export const SimpleWithMap_EntitiesByIdEntry = {
+  typeUrl: 'type.googleapis.com/simple.SimpleWithMap_EntitiesByIdEntry',
   encode(message: SimpleWithMap_EntitiesByIdEntry, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int32(message.key);
     if (message.value !== undefined && message.value !== undefined) {
@@ -1300,6 +1308,7 @@ export const SimpleWithMap_EntitiesByIdEntry = {
 };
 
 export const SimpleWithMap_NameLookupEntry = {
+  typeUrl: 'type.googleapis.com/simple.SimpleWithMap_NameLookupEntry',
   encode(message: SimpleWithMap_NameLookupEntry, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.key);
     writer.uint32(18).string(message.value);
@@ -1362,6 +1371,7 @@ export const SimpleWithMap_NameLookupEntry = {
 };
 
 export const SimpleWithMap_IntLookupEntry = {
+  typeUrl: 'type.googleapis.com/simple.SimpleWithMap_IntLookupEntry',
   encode(message: SimpleWithMap_IntLookupEntry, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int32(message.key);
     writer.uint32(16).int32(message.value);
@@ -1424,6 +1434,7 @@ export const SimpleWithMap_IntLookupEntry = {
 };
 
 export const SimpleWithSnakeCaseMap = {
+  typeUrl: 'type.googleapis.com/simple.SimpleWithSnakeCaseMap',
   encode(message: SimpleWithSnakeCaseMap, writer: Writer = Writer.create()): Writer {
     Object.entries(message.entitiesById).forEach(([key, value]) => {
       SimpleWithSnakeCaseMap_EntitiesByIdEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).ldelim();
@@ -1486,6 +1497,7 @@ export const SimpleWithSnakeCaseMap = {
 };
 
 export const SimpleWithSnakeCaseMap_EntitiesByIdEntry = {
+  typeUrl: 'type.googleapis.com/simple.SimpleWithSnakeCaseMap_EntitiesByIdEntry',
   encode(message: SimpleWithSnakeCaseMap_EntitiesByIdEntry, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int32(message.key);
     if (message.value !== undefined && message.value !== undefined) {
@@ -1550,6 +1562,7 @@ export const SimpleWithSnakeCaseMap_EntitiesByIdEntry = {
 };
 
 export const PingRequest = {
+  typeUrl: 'type.googleapis.com/simple.PingRequest',
   encode(message: PingRequest, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.input);
     return writer;
@@ -1597,6 +1610,7 @@ export const PingRequest = {
 };
 
 export const PingResponse = {
+  typeUrl: 'type.googleapis.com/simple.PingResponse',
   encode(message: PingResponse, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.output);
     return writer;
@@ -1644,6 +1658,7 @@ export const PingResponse = {
 };
 
 export const Numbers = {
+  typeUrl: 'type.googleapis.com/simple.Numbers',
   encode(message: Numbers, writer: Writer = Writer.create()): Writer {
     writer.uint32(9).double(message.double);
     writer.uint32(21).float(message.float);

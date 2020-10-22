@@ -40,8 +40,6 @@ const basePleaseChoose_Submessage: object = {
   name: "",
 };
 
-export const protobufPackage = 'oneof'
-
 export enum PleaseChoose_StateEnum {
   UNKNOWN = 0,
   ON = 2,
@@ -81,6 +79,7 @@ export function pleaseChoose_StateEnumToJSON(object: PleaseChoose_StateEnum): st
 }
 
 export const PleaseChoose = {
+  typeUrl: 'type.googleapis.com/oneof.PleaseChoose',
   encode(message: PleaseChoose, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.name);
     if (message.aNumber !== undefined) {
@@ -294,6 +293,7 @@ export const PleaseChoose = {
 };
 
 export const PleaseChoose_Submessage = {
+  typeUrl: 'type.googleapis.com/oneof.PleaseChoose_Submessage',
   encode(message: PleaseChoose_Submessage, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.name);
     return writer;

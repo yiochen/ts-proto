@@ -96,9 +96,8 @@ function longToNumber(long: Long) {
   return long.toNumber();
 }
 
-export const protobufPackage = 'pb'
-
 export const Timestamp = {
+  typeUrl: 'type.googleapis.com/pb.Timestamp',
   encode(message: Timestamp, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int64(message.seconds);
     writer.uint32(16).int64(message.nanos);
@@ -161,6 +160,7 @@ export const Timestamp = {
 };
 
 export const Duration = {
+  typeUrl: 'type.googleapis.com/pb.Duration',
   encode(message: Duration, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int64(message.nanos);
     return writer;
@@ -208,6 +208,7 @@ export const Duration = {
 };
 
 export const Empty = {
+  typeUrl: 'type.googleapis.com/pb.Empty',
   encode(_: Empty, writer: Writer = Writer.create()): Writer {
     return writer;
   },
@@ -240,6 +241,7 @@ export const Empty = {
 };
 
 export const OptString = {
+  typeUrl: 'type.googleapis.com/pb.OptString',
   encode(message: OptString, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.val);
     return writer;
@@ -287,6 +289,7 @@ export const OptString = {
 };
 
 export const OptInt64 = {
+  typeUrl: 'type.googleapis.com/pb.OptInt64',
   encode(message: OptInt64, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int64(message.val);
     return writer;
@@ -334,6 +337,7 @@ export const OptInt64 = {
 };
 
 export const OptBool = {
+  typeUrl: 'type.googleapis.com/pb.OptBool',
   encode(message: OptBool, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).bool(message.val);
     return writer;
@@ -381,6 +385,7 @@ export const OptBool = {
 };
 
 export const IPNet = {
+  typeUrl: 'type.googleapis.com/pb.IPNet',
   encode(message: IPNet, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).bytes(message.ip);
     writer.uint32(18).bytes(message.mask);
@@ -439,6 +444,7 @@ export const IPNet = {
 };
 
 export const ID = {
+  typeUrl: 'type.googleapis.com/pb.ID',
   encode(message: ID, writer: Writer = Writer.create()): Writer {
     writer.uint32(10).string(message.id);
     return writer;

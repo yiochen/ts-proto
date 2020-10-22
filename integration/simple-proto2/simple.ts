@@ -9,8 +9,6 @@ const baseIssue56: object = {
   test: 1,
 };
 
-export const protobufPackage = 'simple'
-
 export enum EnumWithoutZero {
   A = 1,
   B = 2,
@@ -44,6 +42,7 @@ export function enumWithoutZeroToJSON(object: EnumWithoutZero): string {
 }
 
 export const Issue56 = {
+  typeUrl: 'type.googleapis.com/simple.Issue56',
   encode(message: Issue56, writer: Writer = Writer.create()): Writer {
     writer.uint32(8).int32(message.test);
     return writer;

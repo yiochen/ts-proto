@@ -14,9 +14,8 @@ const baseBaz: object = {
 const baseFooBar: object = {
 };
 
-export const protobufPackage = ''
-
 export const Baz = {
+  typeUrl: 'type.googleapis.com/Baz',
   encode(message: Baz, writer: Writer = Writer.create()): Writer {
     if (message.foo !== undefined) {
       FooBar.encode(message.foo, writer.uint32(10).fork()).ldelim();
@@ -66,6 +65,7 @@ export const Baz = {
 };
 
 export const FooBar = {
+  typeUrl: 'type.googleapis.com/FooBar',
   encode(_: FooBar, writer: Writer = Writer.create()): Writer {
     return writer;
   },
