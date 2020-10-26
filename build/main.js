@@ -144,7 +144,7 @@ function generateFile(typeMap, fileDesc, parameter) {
         file = addLongUtilityMethod(file, options);
     }
     if (initialOutput.includes('bytesFromBase64') || initialOutput.includes('base64FromBytes')) {
-        file = addBytesUtilityMethods(file);
+        file = addBytesUtilityMethods(file, options);
     }
     if (initialOutput.includes('DeepPartial')) {
         file = addDeepPartialType(file, options);
@@ -181,14 +181,18 @@ function addLongUtilityMethod(_file, options) {
             .addStatement('return long.toNumber()')));
     }
 }
-function addBytesUtilityMethods(file) {
-    return file.addCode(ts_poet_1.CodeBlock.of(`interface WindowBase64 {
+function addBytesUtilityMethods(file, options) {
+    let changedFile = file;
+    if (options.env !== EnvOption.NODE) {
+        changedFile = changedFile.addCode(ts_poet_1.CodeBlock.of('import { Buffer } from "buffer";'));
+    }
+    return changedFile.addCode(ts_poet_1.CodeBlock.of(`interface WindowBase64 {
   atob(b64: string): string;
   btoa(bin: string): string;
 }
 
 const windowBase64 = (globalThis as unknown as WindowBase64);
-const atob = windowBase64.atob || ((b64: string) => Buffer.from(b64, 'base64').toString('binary'));
+const atob = windowBase64.atob || ((b64: string) => %L.from(b64, 'base64').toString('binary'));
 const btoa = windowBase64.btoa || ((bin: string) => Buffer.from(bin, 'binary').toString('base64'));
 
 function bytesFromBase64(b64: string): Uint8Array {
@@ -206,7 +210,7 @@ function base64FromBytes(arr: Uint8Array): string {
     bin.push(String.fromCharCode(arr[i]));
   }
   return btoa(bin.join(''));
-}`));
+}`, ts_poet_1.TypeNames.importedType('Buffer@buffer')));
 }
 function addDeepPartialType(file, options) {
     let oneofCase = '';
